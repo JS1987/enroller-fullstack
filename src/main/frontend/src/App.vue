@@ -16,7 +16,7 @@
 
       <login-form @login="login($event)"
                   v-if="!isRegistering"></login-form>
-      <login-form @login="login($event)"
+      <login-form @login="register($event)"
                   :button-label="'zarejestruj się'"
                   v-else></login-form>
     </div>
@@ -40,8 +40,12 @@
             login(user) {
                 this.authenticatedUsername = user.login;
             },
-            register(user){
-                alert(user.login);
+            register(user) {
+                this.$http.post('participants', user)
+                    .then(response => {
+                        // udało się
+                    })
+                    .catch(response => {});
             },
             logout() {
                 this.authenticatedUsername = '';
