@@ -45,7 +45,9 @@
                     .then(response => {
                         // udało się
                     })
-                    .catch(response => {});
+                    .catch(response => {
+                        alert("Nie udalo się! Status: " + response.status)
+                    });
             },
             logout() {
                 this.authenticatedUsername = '';
