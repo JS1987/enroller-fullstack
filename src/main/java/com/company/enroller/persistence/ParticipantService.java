@@ -29,7 +29,12 @@ public class ParticipantService {
     }
 
     public Participant add(Participant participant) {
+
+        String encodedPassword = passwordEncoder.encode(participant.getPassword());
+
+        participant.setPassword(encodedPassword);
         Transaction transaction = connector.getSession().beginTransaction();
+
         connector.getSession().save(participant);
         transaction.commit();
         return participant;
